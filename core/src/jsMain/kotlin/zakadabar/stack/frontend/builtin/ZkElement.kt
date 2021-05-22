@@ -94,6 +94,7 @@ open class ZkElement(
         if (addKClass) element.dataset["kclass"] = this::class.simpleName.toString()
     }
 
+    // TODO Think about lazy childElements. The problem is clearChildren which creates it anyway.
     val childElements by lazy { mutableListOf<ZkElement>() }
 
     // -------------------------------------------------------------------------
@@ -690,11 +691,9 @@ open class ZkElement(
      * each child.
      */
     open fun clearChildren(): ZkElement {
-        if (::childElements.isInitialized) {
-            childElements.forEach { child ->
-                this -= child
-                child.onDestroy()
-            }
+        childElements.forEach { child ->
+            this -= child
+            child.onDestroy()
         }
         return this
     }
@@ -1066,7 +1065,7 @@ open class ZkElement(
     /**
      * Adds a [ZkElement] as a child.
      */
-    operator fun ZkElement?.unaryPlus() : ZkElement? {
+    operator fun ZkElement?.unaryPlus(): ZkElement? {
         if (this == null) return null
         this@ZkElement.buildPoint.appendChild(this.element)
         this@ZkElement.childElements += this

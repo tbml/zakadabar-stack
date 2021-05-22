@@ -22,7 +22,7 @@ open class ZkRecordSelectFilter<T : DtoBase>(
     }
 
     override fun fromString(string: String): RecordId<*> {
-        return items.first().first.fromString(string)
+        return items.first().first
     }
 
     override fun getPropValue() = getValue()

@@ -14,20 +14,15 @@ plugins {
 group = "hu.simplexion.zakadabar"
 version = "2021.5.18"
 
-noArg {
-    annotation("kotlinx.serialization.Serializable")
-}
-
 kotlin {
 
     jvm {
-        withJava()
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
 
-    js {
+    js(BOTH) {
         nodejs()
     }
 

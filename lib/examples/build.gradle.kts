@@ -19,13 +19,12 @@ noArg {
 kotlin {
 
     jvm {
-        withJava()
         compilations.all {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
 
-    js {
+    js(BOTH) {
         nodejs()
     }
 

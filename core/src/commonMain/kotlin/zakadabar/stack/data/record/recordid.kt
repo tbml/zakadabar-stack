@@ -5,93 +5,38 @@
 
 package zakadabar.stack.data.record
 
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-sealed class RecordId<T> : Comparable<RecordId<T>> {
-    abstract fun fromString(value: String): RecordId<T>
-    abstract fun toLong(): Long
-    abstract fun isEmpty(): Boolean
-}
+class RecordId<T> : Comparable<RecordId<T>> {
 
-@Serializable
-@SerialName("empty")
-class EmptyRecordId<T> : RecordId<T>() {
+    val value : String
 
-    override fun fromString(value: String) = EmptyRecordId<T>()
-    override fun toString() = ""
-
-    override fun compareTo(other: RecordId<T>): Int {
-        return 0
+    constructor() {
+        value = ""
     }
 
-    override fun toLong() = throw IllegalStateException("empty record id cannot be converted to long")
-
-    override fun isEmpty() = true
-
-    override fun equals(other: Any?) = if (other is RecordId<*>) other.isEmpty() else false
-
-    override fun hashCode(): Int {
-        return this::class.hashCode()
+    constructor(value : String) {
+        this.value = value
     }
 
-}
-
-@Serializable
-@SerialName("long")
-class LongRecordId<T>(
-    val value: Long
-) : RecordId<T>() {
-
-    override fun fromString(value: String) = LongRecordId<T>(value.toLong())
-    override fun toString() = value.toString()
-
-    override fun compareTo(other: RecordId<T>): Int {
-        if (other is LongRecordId) return this.value.compareTo(other.value)
-        return 0
+    constructor(value : Long) {
+        this.value = value.toString()
     }
 
-    override fun toLong() = value
+    fun toLong() = value.toLong()
 
-    override fun isEmpty() = (value == 0L)
+    fun isEmpty() = value.isEmpty()
 
-    override fun equals(other: Any?) = when (other) {
-        is LongRecordId<*> -> other.value == this.value
-        is StringRecordId<*> -> other.value.toLong() == this.value
-        is EmptyRecordId<*> -> this.isEmpty()
-        else -> false
-    }
+    override fun compareTo(other: RecordId<T>) = this.value.compareTo(other.value)
 
-    override fun hashCode() = value.hashCode()
+    override fun equals(other : Any?) = if (other != null && other is RecordId<*>) this.value == other.value else false
 
-}
-
-@Serializable
-@SerialName("string")
-class StringRecordId<T>(
-    val value: String
-) : RecordId<T>() {
-
-    override fun fromString(value: String) = StringRecordId<T>(value)
     override fun toString() = value
-
-    override fun compareTo(other: RecordId<T>): Int {
-        if (other is StringRecordId) return this.value.compareTo(other.value)
-        return 0
-    }
-
-    override fun toLong() = value.toLong()
-
-    override fun isEmpty() = value.isEmpty()
-
-    override fun equals(other: Any?) = when (other) {
-        is LongRecordId<*> -> other.value == this.value.toLong()
-        is StringRecordId<*> -> other.value == this.value
-        is EmptyRecordId<*> -> this.isEmpty()
-        else -> false
-    }
-
     override fun hashCode() = value.hashCode()
 
 }
+
+typealias EmptyRecordId<T> = RecordId<T>
+typealias LongRecordId<T> = RecordId<T>
+typealias StringRecordId<T> = RecordId<T>

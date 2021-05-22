@@ -27,7 +27,8 @@ data class SettingDto(
 
     override fun schema() = DtoSchema {
         + ::role
-        + ::source
+        // FIXME  IR compiler does not support + ::enumField
+        //+ ::source
         + ::namespace min 0 max 100
         + ::className min 1 max 100 blank false
     }

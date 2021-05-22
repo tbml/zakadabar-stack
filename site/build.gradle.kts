@@ -17,12 +17,10 @@ plugins {
 group = "hu.simplexion.zakadabar"
 version = "2021.5.18"
 
+val coroutinesVersion = "1.5.0"
+
 application {
     mainClassName = "zakadabar.stack.backend.ServerKt"
-}
-
-noArg {
-    annotation("kotlinx.serialization.Serializable")
 }
 
 kotlin {
@@ -36,6 +34,7 @@ kotlin {
 
     js {
         browser()
+        binaries.executable()
     }
 
     sourceSets["commonMain"].dependencies {

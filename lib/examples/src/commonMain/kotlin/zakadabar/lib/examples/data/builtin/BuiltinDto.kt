@@ -60,12 +60,14 @@ data class BuiltinDto(
         + ::id
         + ::booleanValue
         + ::doubleValue
-        + ::enumSelectValue
+        // FIXME  IR compiler does not support + ::enumField
+        //EnumBoSchemaEntry(::enumSelectValue, enumValues()).also { entries[::enumSelectValue] = it }
         + ::intValue
         + ::instantValue
         + ::optBooleanValue
         + ::optDoubleValue
-        + ::optEnumSelectValue
+        // FIXME  IR compiler does not support + ::enumField
+        //OptEnumBoSchemaEntry(::optEnumSelectValue, enumValues()).also { entries[::optEnumSelectValue] = it }
         + ::optInstantValue
         + ::optIntValue
         + ::optSecretValue max 50

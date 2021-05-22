@@ -17,8 +17,8 @@ version = "2021.5.25-SNAPSHOT"
 val isSnapshot = version.toString().contains("SNAPSHOT")
 
 // common
-val ktorVersion = "1.4.3"
-val coroutinesVersion = "1.3.9"
+val ktorVersion = "1.5.4"
+val coroutinesVersion = "1.5.0"
 val serializationVersion = "1.1.0"
 val datetimeVersion = "0.2.0"
 val cliktVersion = "2.8.0"
@@ -37,7 +37,7 @@ kotlin {
         }
     }
 
-    js {
+    js(BOTH) {
         nodejs {
             testTask {
                 enabled = false // complains about missing DOM, TODO fix that, maybe, I'm not sure that I want the dependency
@@ -107,15 +107,6 @@ kotlin {
             }
         }
     }
-}
-
-tasks.named("compileKotlinJs") {
-    this as org.jetbrains.kotlin.gradle.dsl.KotlinJsCompile
-    kotlinOptions.moduleKind = "umd"
-}
-
-noArg {
-    annotation("kotlinx.serialization.Serializable")
 }
 
 tasks.withType<Jar> {

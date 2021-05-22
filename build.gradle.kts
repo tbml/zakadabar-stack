@@ -17,9 +17,6 @@ subprojects {
     repositories {
         mavenCentral()
         mavenLocal() // temporary, for markdown snapshot
-        jcenter()
-        maven(url = "https://kotlin.bintray.com/kotlinx/") // for kotlinx.datetime, TODO remove when ready
-        maven(url = "http://dl.bintray.com/jetbrains/markdown") // TODO remove when ready
     }
 
 }
