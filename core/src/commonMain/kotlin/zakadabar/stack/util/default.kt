@@ -6,3 +6,5 @@ package zakadabar.stack.util
 import zakadabar.stack.data.BaseBo
 
 expect inline fun <reified T : BaseBo> default(builder: T.() -> Unit): T
+
+expect inline fun <reified T : BaseBo> default(): T

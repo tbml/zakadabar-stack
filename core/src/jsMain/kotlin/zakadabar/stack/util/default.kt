@@ -35,7 +35,7 @@ actual inline fun <reified T : BaseBo> default(builder: T.() -> Unit): T {
  *
  * @return an instance of T with the default values set
  */
-inline fun <reified T : BaseBo> default(): T {
+actual inline fun <reified T : BaseBo> default(): T {
     val bo = callCtor(T::class.js) as T
     bo.schema().setDefaults()
     return bo

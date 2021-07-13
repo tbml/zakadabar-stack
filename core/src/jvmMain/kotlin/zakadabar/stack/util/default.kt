@@ -46,3 +46,16 @@ actual inline fun <reified T : BaseBo> default(builder: T.() -> Unit): T {
     instance.builder()
     return instance
 }
+
+/**
+ * Creates an instance of the given bo with defaults from the schema.
+ * Then runs the builder function so the defaults may be customized.
+ *
+ * @return an instance of T with the default values set
+ */
+@Suppress("unused") // we do want to use this on the companion
+actual inline fun <reified T : BaseBo> default(): T {
+    val instance = T::class.java.getDeclaredConstructor().newInstance()
+    instance.schema().setDefaults()
+    return instance
+}

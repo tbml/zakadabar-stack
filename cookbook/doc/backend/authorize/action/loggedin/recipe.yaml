@@ -1,4 +1,5 @@
 title: Standalone Action BL For Logged-In Users
+level: Beginner
 targets:
   - jvm
 tags:
@@ -7,5 +8,3 @@ tags:
   - standalone
   - authorize
   - logged in
-level:
-  Beginner
