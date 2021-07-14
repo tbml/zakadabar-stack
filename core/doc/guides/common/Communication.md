@@ -22,17 +22,6 @@ features such as:
 
 ## Terminology
 
-### node
-
-`node` is an application that runs on the stack. It covers both frontend and
-backend. A frontend that runs in a browser is a `node`, a backend that serves
-that browser is also a `node`, and a backend that generates reports every
-midnight and sends them in e-mail is also a `node`.
-
-The reason behind this is that from communication point of view there
-is no real difference between the frontend and backend. This might sound strange
-but think of two server site nodes communication with each other in
-a microservice architecture.
 
 ### comm
 

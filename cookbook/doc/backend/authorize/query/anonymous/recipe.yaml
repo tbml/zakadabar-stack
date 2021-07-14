@@ -6,3 +6,7 @@ tags:
   - standalone
   - authorize
   - public
+links:
+  - /doc/guides/backend/BusinessLogic.md
+  - /doc/guides/backend/Authorizer.md
+  - /doc/guides/common/Data.md

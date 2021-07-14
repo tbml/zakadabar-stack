@@ -6,3 +6,5 @@ targets:
 tags:
   - server description
   - frontend
+links:
+  - /doc/guides/common/Node.md

@@ -15,3 +15,8 @@ tags:
   - delete
   - all
   - execute
+links:
+  - /doc/guides/common/Introduction.md
+  - /doc/guides/common/Data.md
+  - /doc/guides/common/URLs.md
+

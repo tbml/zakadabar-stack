@@ -6,3 +6,6 @@ targets:
 tags:
   - css
   - font
+links:
+  - /doc/guides/browser/structure/Introduction.md
+  - /doc/guides/browser/structure/ThemesCss.md

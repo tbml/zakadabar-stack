@@ -8,3 +8,7 @@ tags:
   - standalone
   - authorize
   - logged in
+links:
+  - /doc/guides/backend/BusinessLogic.md
+  - /doc/guides/backend/Authorizer.md
+  - /doc/guides/common/Data.md
