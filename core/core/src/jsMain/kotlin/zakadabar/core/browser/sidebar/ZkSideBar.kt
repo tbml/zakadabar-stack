@@ -21,16 +21,16 @@ open class ZkSideBar : ZkElement() {
         item(target<T>(), subPath, text)
 
     open fun item(target : ZkAppRouting.ZkTarget, subPath : String? = null, text : String? = null) =
-        ZkSideBarItem(target, null, subPath, text)
+        ZkSideBarItem(target, null, subPath, text, sideBar = this)
 
     open fun item(icon : ZkIconSource, target : ZkAppRouting.ZkTarget, subPath : String? = null, text : String? = null) =
-        ZkSideBarItem(target, icon, subPath, text)
+        ZkSideBarItem(target, icon, subPath, text, sideBar = this)
 
     open fun item(text: String, capitalize: Boolean = true, onClick: (() -> Unit)? = null) =
-        ZkSideBarItem(text, null, null, capitalize, onClick)
+        ZkSideBarItem(text, null, null, capitalize, onClick, sideBar = this)
 
     open fun item(icon : ZkIconSource, text: String, capitalize: Boolean = true, onClick: (() -> Unit)? = null) =
-        ZkSideBarItem(text, icon, null, capitalize, onClick)
+        ZkSideBarItem(text, icon, null, capitalize, onClick, sideBar = this)
 
     inline fun <reified T : ZkAppRouting.ZkTarget> section(text : String? = null, noinline builder: ZkElement.() -> Unit) =
         ZkSideBarGroup(target<T>(), text = text, section = true, builder = builder, sideBar = this)

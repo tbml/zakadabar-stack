@@ -11,6 +11,8 @@ import zakadabar.core.browser.ZkElement
 import zakadabar.core.browser.application.ZkAppRouting
 import zakadabar.core.browser.application.application
 import zakadabar.core.browser.icon.ZkIcon
+import zakadabar.core.browser.toast.toastInfo
+import zakadabar.core.browser.util.minusAssign
 import zakadabar.core.browser.util.plusAssign
 import zakadabar.core.resource.ZkIconSource
 import zakadabar.core.resource.localizedStrings
@@ -29,7 +31,8 @@ open class ZkSideBarItem(
     val icon: ZkIconSource? = null,
     val url: String? = null,
     val capitalize: Boolean = true,
-    val onClick: (() -> Unit)? = null
+    val onClick: (() -> Unit)? = null,
+    val sideBar: ZkSideBar
 ) : ZkElement() {
 
     open lateinit var textElement: HTMLElement
@@ -39,12 +42,14 @@ open class ZkSideBarItem(
         icon: ZkIconSource? = null,
         subPath: String? = null,
         text: String? = null,
-        onClick: (() -> Unit)? = null
+        onClick: (() -> Unit)? = null,
+        sideBar: ZkSideBar
     ) : this(
         text = text ?: localizedStrings.getNormalized(target.viewName),
         icon = icon,
         url = application.routing.toLocalUrl(target, subPath),
-        onClick = onClick
+        onClick = onClick,
+        sideBar = sideBar
     )
 
     open val localNav
@@ -75,6 +80,11 @@ open class ZkSideBarItem(
     }
 
     open fun onClick(event: Event) {
+
+        unselectAllElementsInGroup(sideBar.find())
+
+       + zkSideBarStyles.selectedItem
+
         if (localNav) {
             event.preventDefault()
             if (onClick != null) {
@@ -87,6 +97,17 @@ open class ZkSideBarItem(
 
     open fun onMouseDown(event: Event) {
         event.preventDefault() // to prevent focus change
+    }
+
+    private fun unselectAllElementsInGroup(groups: List<ZkSideBarGroup>){
+        groups.forEach { group ->
+//            group.find<ZkSideBarItem>().forEach { element ->
+//            group.childElements.forEach { element ->
+//                element as ZkSideBarItem
+//                element.classList.minusAssign(zkSideBarStyles.selectedItem)
+//            }
+            //unselectAllElementsInGroup(group.find())
+        }
     }
 
 }

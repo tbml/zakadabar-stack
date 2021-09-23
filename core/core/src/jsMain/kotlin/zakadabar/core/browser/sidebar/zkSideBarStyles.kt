@@ -18,6 +18,7 @@ open class ZkSideBarStyles : ZkCssStyleSheet() {
     open var sectionBackgroundColor by cssParameter { theme.blockBackgroundColor }
     open var sectionTextColor by cssParameter { theme.textColor }
     open var sectionBorderColor by cssParameter { theme.borderColor }
+    open var highlightColor by cssParameter { "#ff0000" }
 
     open val sidebar by cssClass {
         + BoxSizing.borderBox
@@ -167,5 +168,26 @@ open class ZkSideBarStyles : ZkCssStyleSheet() {
         backgroundColor = theme.blockBackgroundColor
         borderBottom = theme.fixBorder
         marginBottom = 6.px
+    }
+
+    open val selectedItem by cssClass {
+
+        + BoxSizing.borderBox
+
+        + Display.flex
+        + FlexDirection.row
+        + AlignItems.center
+
+        + Cursor.pointer
+
+        minHeight = itemMinHeight.px
+        paddingRight = 8.px
+        paddingLeft = 20.px
+
+        color = this@ZkSideBarStyles.textColor
+
+        backgroundColor = "#ff0000"
+        fill = "#ff0000"
+
     }
 }
